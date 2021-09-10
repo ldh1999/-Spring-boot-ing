@@ -10,4 +10,8 @@ public interface InstanceFactor {
 
     Object getClassByName(String clazzName);
 
+    boolean addInstance(Object value, String key);
+
+    Object getInstanceByKey(String key);
+
 }
