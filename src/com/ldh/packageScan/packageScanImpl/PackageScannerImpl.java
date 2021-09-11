@@ -4,6 +4,7 @@ import com.ldh.packageScan.PackageScanner;
 import com.ldh.util.StringUtil;
 
 import java.io.File;
+import java.io.FileFilter;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
@@ -18,18 +19,20 @@ public class PackageScannerImpl implements PackageScanner {
 
     private String basePage;
     private ClassLoader classLoader;
-    private List<String> listClassAll;
+    private List<String> listClassAllName;
+    private List<Class> listClassAll;
 
     public PackageScannerImpl(String basePage) {
         this.basePage = basePage;
         this.classLoader = getClass().getClassLoader();
+        this.listClassAllName = new LinkedList<>();
         this.listClassAll = new LinkedList<>();
     }
 
     public PackageScannerImpl(String basePage, ClassLoader classLoader) {
         this.basePage = basePage;
         this.classLoader = classLoader;
-        this.listClassAll = new LinkedList<>();
+        this.listClassAllName = new LinkedList<>();
     }
     private List<String> doScan(String basePackage, List<String> nameList) throws IOException {
 
@@ -44,12 +47,12 @@ public class PackageScannerImpl implements PackageScanner {
         }
         for (String className : list){
             if (this.isClass(className)){
-                listClassAll.add(className);
+                listClassAllName.add(className);
             }else {
                 this.doScan(basePackage+'.'+className,new ArrayList<>());
             }
         }
-        return listClassAll;
+        return listClassAllName;
     }
 
     private boolean isClass(String str){
@@ -86,6 +89,37 @@ public class PackageScannerImpl implements PackageScanner {
         return nameList;
     }
 
+    private List<Class> docanToClass(String basePage) throws ClassNotFoundException {
+        String basePath = StringUtil.dotToSplash(basePage);
+        URL url = classLoader.getResource(basePath);
+        String urlStr = StringUtil.getRootPath(url);
+        File file = new File(urlStr);
+        if (!file.exists()||!file.isDirectory()){
+            return null;
+        }
+        // 如果存在 就获取包下的所有文件 包括目录
+        File[] dirfiles = file.listFiles(new FileFilter() {
+            // 自定义过滤规则 如果可以循环(包含子目录) 或则是以.class结尾的文件(编译好的java类文件)
+            @Override
+            public boolean accept(File file) {
+                return (file.isDirectory()) || (file.getName().endsWith(".class"));
+            }
+        });
+        for (File file_ : dirfiles){
+            if (file_.isDirectory()){
+                docanToClass(basePage+'.'+file_.getName());
+            }else{
+                String className = file_.getName().substring(0,file_.getName().lastIndexOf('.'));
+                listClassAll.add(Class.forName(basePage+'.'+className));
+            }
+        }
+        return listClassAll;
+    }
+
+    @Override
+    public List<Class> getFullQualifiedClass() throws ClassNotFoundException {
+        return docanToClass(basePage);
+    }
 
     @Override
     public List<String> getFullyQualifiedClassNameList() throws IOException {
@@ -96,11 +130,11 @@ public class PackageScannerImpl implements PackageScanner {
 
         PackageScanner packageScanner= new PackageScannerImpl("com.ldh");
         try{
-            List<String> list = packageScanner.getFullyQualifiedClassNameList();
+            List<Class> list = packageScanner.getFullQualifiedClass();
             list.forEach((e)->{
-                System.out.println(e);
+                System.out.println(e.getName());
             });
-        }catch (IOException e){
+        }catch (Exception e){
             e.getMessage();
         }
 
