@@ -15,6 +15,9 @@ import java.util.List;
 import java.util.jar.JarEntry;
 import java.util.jar.JarInputStream;
 
+/**
+ * 扫描给定的包
+ */
 public class PackageScannerImpl implements PackageScanner {
 
     private String basePage;
@@ -124,19 +127,5 @@ public class PackageScannerImpl implements PackageScanner {
     @Override
     public List<String> getFullyQualifiedClassNameList() throws IOException {
         return doScan(basePage,new ArrayList<>());
-    }
-
-    public static void main(String[] ages){
-
-        PackageScanner packageScanner= new PackageScannerImpl("com.ldh");
-        try{
-            List<Class> list = packageScanner.getFullQualifiedClass();
-            list.forEach((e)->{
-                System.out.println(e.getName());
-            });
-        }catch (Exception e){
-            e.getMessage();
-        }
-
     }
 }
