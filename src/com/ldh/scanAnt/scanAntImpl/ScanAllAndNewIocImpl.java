@@ -48,7 +48,7 @@ public class ScanAllAndNewIocImpl implements ScanAllAndNewIoc {
      * @throws InstantiationException
      * @throws InvocationTargetException
      */
-    private void chooseConfigAnt(Class clazz) throws IllegalAccessException, InstantiationException, InvocationTargetException {
+    /*private void chooseConfigAnt(Class clazz) throws IllegalAccessException, InstantiationException, InvocationTargetException {
         if (clazz.isAnnotationPresent(Config.class)){
             Object obj = clazz.newInstance();
             Method[] methods = clazz.getMethods();
@@ -61,7 +61,7 @@ public class ScanAllAndNewIocImpl implements ScanAllAndNewIoc {
             }
 
         }
-    }
+    }*/
 
     /**
      * 过滤所有的带@Spring类,并为其创建对象放入ioc中
@@ -82,7 +82,6 @@ public class ScanAllAndNewIocImpl implements ScanAllAndNewIoc {
                     if (obj != null){
                         //将属性值注入属性
                         field.setAccessible(true);
-                        field.set();
                     }
                 }
             }
@@ -133,7 +132,7 @@ public class ScanAllAndNewIocImpl implements ScanAllAndNewIoc {
         //循环扫描到的所有类注解
         for (Class clazz : listClass){
             //Config注解类
-            chooseConfigAnt(clazz);
+           // chooseConfigAnt(clazz);
         }
         mapAllAnt.put("BEAN",beanMap);
     }
