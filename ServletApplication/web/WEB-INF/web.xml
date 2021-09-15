@@ -5,8 +5,12 @@
          version="4.0">
 
     <servlet>
-        <servlet-name>SiSpringStart</servlet-name>
-        <servlet-class>com.ldh.start.SiStart</servlet-class>
+        <servlet-name>TimeServlet</servlet-name>
+        <servlet-class>StartSpring</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
+    <servlet-mapping>
+        <servlet-name>TimeServlet</servlet-name>
+        <url-pattern>/servlet/TimeServlet</url-pattern>
+    </servlet-mapping>
 </web-app>

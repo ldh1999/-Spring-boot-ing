@@ -1,7 +1,7 @@
 package com.ldh.scanAnt.scanAntImpl;
 
 import com.ldh.ant.Resource;
-import com.ldh.ant.Spring;
+import com.ldh.ant.antConption.Spring;
 import com.ldh.scanAnt.ScanAllAndNewIoc;
 
 import java.lang.reflect.Field;

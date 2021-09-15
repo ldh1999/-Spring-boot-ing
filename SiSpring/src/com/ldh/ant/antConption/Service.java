@@ -1,4 +1,4 @@
-package com.ldh.ant;
+package com.ldh.ant.antConption;
 
 import com.sun.istack.internal.NotNull;
 
@@ -7,7 +7,7 @@ import java.lang.annotation.*;
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
-public @interface Spring {
+public @interface Service{
     @NotNull
-    public String name();
+    String name();
 }

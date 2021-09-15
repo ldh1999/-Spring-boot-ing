@@ -1,6 +1,6 @@
 package com.ldh.ioc.IocImpl.IocLIst;
 
-import com.ldh.ant.Bean;
+import com.ldh.ant.antConption.Bean;
 import com.ldh.ant.Config;
 import com.ldh.ioc.IocImpl.IocForList;
 import com.ldh.springException.SpringIocExpetion;

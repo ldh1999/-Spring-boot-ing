@@ -1,6 +1,5 @@
 package com.ldh.ioc.IocImpl.IocLIst;
 
-import com.ldh.ant.antConption.Controller;
 import com.ldh.ant.antConption.Service;
 import com.ldh.ioc.IocImpl.IocForList;
 import com.ldh.ioc.IocUtils.IocChooseAntUtils;
@@ -9,55 +8,61 @@ import com.ldh.util.StringUtilss;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-public class ControllerForList extends IocForList {
+public class ServiceForList extends IocForList {
+
     /**
-     * ioc中的controller集合
+     * 当前ioc中的Service实例
      */
-    private Map<String, List<Object>> controllerInstanceMap;
+    private Map<String, List<Object>> serviceInstanceMap;
 
     /**
      * 当前的单例类
      */
-    private static ControllerForList controllerForList;
+    private static ServiceForList serviceForList;
 
-    private ControllerForList(List<Class> classList){
-        super(classList);
-        controllerInstanceMap = new HashMap<>();
+    private ServiceForList(List<Class> listClass) {
+        super(listClass);
+        serviceInstanceMap = new HashMap();
     }
 
-
-    private void chooseControllerAnt(Class clazz) throws IllegalAccessException, InstantiationException{
-        IocChooseAntUtils.chooseAntWriteIocMap(controllerInstanceMap, clazz, Controller.class, antChooseFactor);
-    }
-
-    public synchronized static ControllerForList getBeanForList() throws SpringIocExpetion {
-        if (controllerForList == null){
+    /**
+     * 单例模式
+     * @return
+     * @throws SpringIocExpetion
+     */
+    public synchronized static ServiceForList getBeanForList() throws SpringIocExpetion {
+        if (serviceForList == null){
             throw new SpringIocExpetion("请注入ioc");
         }
-        return controllerForList;
+        return serviceForList;
     }
 
-    public synchronized static ControllerForList getBeanForList(List<Class> listClass){
-        if (controllerForList == null){
-            controllerForList = new ControllerForList(listClass);
+    public synchronized static ServiceForList getBeanForList(List<Class> listClass){
+        if (serviceForList == null){
+            serviceForList = new ServiceForList(listClass);
         }
-        return controllerForList;
+        return serviceForList;
     }
+
+    private void chooseServiceAnt(Class clazz) throws IllegalAccessException, InstantiationException, InvocationTargetException, SpringIocExpetion {
+        IocChooseAntUtils.chooseAntWriteIocMap(serviceInstanceMap, clazz, Service.class, antChooseFactor);
+    }
+
+
 
     @Override
     public Object getBean(String name) throws SpringIocExpetion {
-        List<Object> list = controllerInstanceMap.get(name);
+        List<Object> list = serviceInstanceMap.get(name);
         if (StringUtilss.isEmpty(name)||list == null){
             throw new SpringIocExpetion("当前bean为空");
         }
         if (list.size()>1){
             System.err.println("注意,注入"+name+"出现二义性");
         }
-        return controllerInstanceMap.get(name).get(0);
+        return serviceInstanceMap.get(name).get(0);
     }
 
     @Override
@@ -67,7 +72,7 @@ public class ControllerForList extends IocForList {
         }
         //循环扫描到的所有类注解
         for (Class clazz : listClass){
-            chooseControllerAnt(clazz);
+            chooseServiceAnt(clazz);
             logger.info(clazz+"注入成功");
         }
     }

@@ -2,6 +2,7 @@ package com.ldh.ioc;
 
 import com.ldh.ioc.IocImpl.IocLIst.BeanForList;
 import com.ldh.ioc.IocImpl.IocLIst.ControllerForList;
+import com.ldh.ioc.IocImpl.IocLIst.ServiceForList;
 import com.ldh.ioc.IocImpl.IocLIst.SpringForList;
 import com.ldh.springException.SpringIocExpetion;
 
@@ -35,6 +36,11 @@ public class IocInit {
     private ControllerForList controllerForList;
 
     /**
+     * serviceList
+     */
+    private ServiceForList serviceForList;
+
+    /**
      * 初始化当前ioc总容器
      * @param listClass
      */
@@ -55,6 +61,8 @@ public class IocInit {
         springForList.initIOC();
         controllerForList = ControllerForList.getBeanForList(listClass);
         controllerForList.initIOC();
+        serviceForList = ServiceForList.getBeanForList(listClass);
+        serviceForList.initIOC();
         logger.info("IOC容器初始化完成");
     }
 

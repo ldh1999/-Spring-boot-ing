@@ -1,8 +1,8 @@
-package com.cc.iocUse;
+package com.ldh.servletTest.iocUse;
 
-import com.cc.virtualConfigPage.VirtualJdbc;
 import com.ldh.ant.Resource;
 import com.ldh.ant.antConption.Spring;
+import com.ldh.servletTest.virtualConfigPage.VirtualJdbc;
 
 @Spring(name="iocInstance")
 public class GetIocInstance {

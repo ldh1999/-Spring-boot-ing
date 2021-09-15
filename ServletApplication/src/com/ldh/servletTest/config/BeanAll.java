@@ -1,8 +1,8 @@
-package com.cc.config;
+package com.ldh.servletTest.config;
 
-import com.cc.virtualConfigPage.VirtualJdbc;
 import com.ldh.ant.antConption.Bean;
 import com.ldh.ant.Config;
+import com.ldh.servletTest.virtualConfigPage.VirtualJdbc;
 
 @Config(name = "beanAll")
 public class BeanAll {
