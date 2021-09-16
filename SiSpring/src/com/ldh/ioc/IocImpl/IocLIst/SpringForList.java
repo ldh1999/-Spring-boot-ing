@@ -5,6 +5,7 @@ import com.ldh.ioc.IocImpl.IocForList;
 import com.ldh.ioc.IocOutInstance;
 import com.ldh.ioc.iocWirdImpl.IocOutInstanceForResource;
 import com.ldh.springException.SpringIocExpetion;
+import com.ldh.statueFinal.InstanceType;
 import com.ldh.util.StringUtilss;
 
 import java.lang.reflect.InvocationTargetException;
@@ -65,10 +66,9 @@ public class SpringForList extends IocForList {
         if (StringUtilss.isEmpty(spring.name())){
             throw new SpringIocExpetion("Spring name is null");
         }else {
-            iocOutInstance.iocResource(obj,beanForList.getBeanMap());
+            iocOutInstance.iocResource(obj,beanForList.getBeanMap(), InstanceType.MAP);
             springInstanceMap.put(spring.name(), obj);
         }
-
     }
 
     @Override

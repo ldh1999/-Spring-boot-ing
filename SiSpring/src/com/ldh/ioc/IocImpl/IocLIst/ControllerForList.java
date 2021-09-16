@@ -30,7 +30,7 @@ public class ControllerForList extends IocForList {
     }
 
 
-    private void chooseControllerAnt(Class clazz) throws IllegalAccessException, InstantiationException{
+    private void chooseControllerAnt(Class clazz) throws IllegalAccessException, InstantiationException, SpringIocExpetion {
         IocChooseAntUtils.chooseAntWriteIocMap(controllerInstanceMap, clazz, Controller.class, antChooseFactor);
     }
 

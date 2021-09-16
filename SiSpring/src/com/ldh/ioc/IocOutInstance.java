@@ -5,5 +5,5 @@ import com.ldh.springException.SpringIocExpetion;
 import java.util.Map;
 
 public interface IocOutInstance {
-    Object iocResource(Object obj, Map map) throws IllegalAccessException, SpringIocExpetion;
+    Object iocResource(Object obj, Map map, String instanceType) throws IllegalAccessException, SpringIocExpetion;
 }

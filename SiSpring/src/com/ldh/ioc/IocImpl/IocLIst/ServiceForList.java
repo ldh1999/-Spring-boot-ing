@@ -47,7 +47,7 @@ public class ServiceForList extends IocForList {
         return serviceForList;
     }
 
-    private void chooseServiceAnt(Class clazz) throws IllegalAccessException, InstantiationException, InvocationTargetException, SpringIocExpetion {
+    private void chooseServiceAnt(Class clazz) throws IllegalAccessException, InstantiationException, SpringIocExpetion {
         IocChooseAntUtils.chooseAntWriteIocMap(serviceInstanceMap, clazz, Service.class, antChooseFactor);
     }
 
