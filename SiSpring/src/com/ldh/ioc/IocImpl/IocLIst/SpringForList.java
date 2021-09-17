@@ -66,7 +66,9 @@ public class SpringForList extends IocForList {
         if (StringUtilss.isEmpty(spring.name())){
             throw new SpringIocExpetion("Spring name is null");
         }else {
+            //注入带注解的属性值
             iocOutInstance.iocResource(obj,beanForList.getBeanMap(), InstanceType.MAP);
+            iocOutInstance.iocAutowrid(obj, beanForList.getBeanMap());
             springInstanceMap.put(spring.name(), obj);
         }
     }

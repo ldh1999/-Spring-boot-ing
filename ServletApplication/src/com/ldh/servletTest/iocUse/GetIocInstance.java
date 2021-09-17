@@ -1,6 +1,6 @@
 package com.ldh.servletTest.iocUse;
 
-import com.ldh.ant.Resource;
+import com.ldh.ant.iocWirdAnt.Resource;
 import com.ldh.ant.antConption.Spring;
 import com.ldh.servletTest.virtualConfigPage.VirtualJdbc;
 

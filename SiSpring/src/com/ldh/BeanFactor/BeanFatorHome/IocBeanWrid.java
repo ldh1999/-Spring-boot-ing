@@ -1,7 +1,6 @@
 package com.ldh.BeanFactor.BeanFatorHome;
 
-import com.ldh.ant.Resource;
-import com.ldh.ant.antConption.Bean;
+import com.ldh.ant.iocWirdAnt.Resource;
 import com.ldh.ioc.IocImpl.IocLIst.BeanForList;
 import com.ldh.springException.SpringIocExpetion;
 

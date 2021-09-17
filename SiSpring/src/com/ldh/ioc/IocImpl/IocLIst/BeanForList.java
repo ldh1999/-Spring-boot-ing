@@ -70,7 +70,10 @@ public class BeanForList extends IocForList {
      * @throws InvocationTargetException
      * @throws IllegalAccessException
      */
-    private void joinBeanForBeanList(Method method, Object obj) throws InvocationTargetException, IllegalAccessException {
+    private void joinBeanForBeanList(Method method, Object obj) throws InvocationTargetException, IllegalAccessException, SpringIocExpetion {
+        if (beanMap.containsKey(method.getName())){
+            throw new SpringIocExpetion("Bean扫描异常，该bean以为注册");
+        }
         beanMap.put(method.getName(),method.invoke(obj));
     }
 

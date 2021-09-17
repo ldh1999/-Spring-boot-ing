@@ -1,6 +1,6 @@
 package com.cc.virtualConfigPage;
 
-public class VirtualJdbc {
+public class VirtualJdbc extends VirtualJdbcFather{
     private String url;
     private String username;
     private String password;

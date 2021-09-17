@@ -1,7 +1,7 @@
 package com.cc.service;
 
 import com.cc.virtualConfigPage.VirtualJdbc;
-import com.ldh.ant.Resource;
+import com.ldh.ant.iocWirdAnt.Resource;
 import com.ldh.ant.antConption.Service;
 
 @Service()

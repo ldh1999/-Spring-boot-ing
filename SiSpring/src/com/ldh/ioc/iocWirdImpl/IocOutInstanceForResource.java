@@ -1,13 +1,12 @@
 package com.ldh.ioc.iocWirdImpl;
 
-import com.ldh.ant.Resource;
+import com.ldh.ant.iocWirdAnt.Autowird;
+import com.ldh.ant.iocWirdAnt.Resource;
 import com.ldh.ioc.IocOutInstance;
 import com.ldh.springException.SpringIocExpetion;
-import com.ldh.statueFinal.InstanceType;
 
 import java.lang.reflect.Field;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class IocOutInstanceForResource implements IocOutInstance {
     /**
@@ -27,6 +26,7 @@ public class IocOutInstanceForResource implements IocOutInstance {
             if (field.isAnnotationPresent(Resource.class)){
                 //获取当前方法的Resource注解
                 Resource resource = field.getAnnotation(Resource.class);
+
                 //获取注解中的name
                 String beanName = resource.name();
                 //获取此name在传入的ioc实例中的对象
@@ -53,6 +53,40 @@ public class IocOutInstanceForResource implements IocOutInstance {
                         }
                     }
                 }*/
+            }
+        }
+        return obj;
+    }
+    //还未考虑在子类上的实现
+
+    @Override
+    public Object iocAutowrid(Object obj, Map map) throws SpringIocExpetion, IllegalAccessException {
+        Class clazz = obj.getClass();
+        if (clazz.getDeclaredFields().length <= 0){
+            return obj;
+        }
+        Field[] fields = clazz.getDeclaredFields();
+        for (Field field : fields){
+            if (!field.isAnnotationPresent(Autowird.class)){
+                continue;
+            }
+            List<Object> collectInstanceObject = new LinkedList<>();
+            Collection<Object> mapValue = map.values();
+            for (Object mapObject : mapValue){
+                Class fieldClass = field.getType();
+                if (mapObject.getClass() == fieldClass){
+                    collectInstanceObject.add(mapObject);
+                }else{
+
+                }
+            }
+            if (collectInstanceObject.isEmpty()){
+                throw new SpringIocExpetion("ioc属性注入失败,该类型不存在");
+            }else if (collectInstanceObject.size() == 1){
+                field.setAccessible(true);
+                field.set(obj, collectInstanceObject.get(0));
+            }else if (collectInstanceObject.size() > 1){
+                throw new SpringIocExpetion("无法找到唯一类型的值,建议使用resource注解根据name注入");
             }
         }
         return obj;

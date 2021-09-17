@@ -1,6 +1,6 @@
 package com.ldh.scanAnt.scanAntImpl;
 
-import com.ldh.ant.Resource;
+import com.ldh.ant.iocWirdAnt.Resource;
 import com.ldh.ant.antConption.Spring;
 import com.ldh.scanAnt.ScanAllAndNewIoc;
 

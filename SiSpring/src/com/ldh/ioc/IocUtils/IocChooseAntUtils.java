@@ -39,8 +39,12 @@ public class IocChooseAntUtils {
         if (obj == null){
             return;
         }
-        //注入resource注解的方法(只针对obj对象)
+        //注入带有resource注解的属性(只针对obj对象)
         iocOutInstance.iocResource(obj, beanForList.getBeanMap(), InstanceType.LIST);
+        //注入带有autowrid注解的属性(只针对obj对象)
+        iocOutInstance.iocAutowrid(obj, beanForList.getBeanMap());
+
+
         if (listMap.containsKey(clazz.getName())){
             listMap.get(clazz.getName()).add(obj);
         }else {
