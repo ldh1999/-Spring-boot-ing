@@ -1,20 +1,15 @@
 package com.cc;
 
-import com.cc.virtualConfigPage.VirtualJdbc;
-import com.cc.virtualConfigPage.VirtualJdbcFather;
-import com.ldh.ant.antConption.Service;
+import com.cc.virtualConfigPage.BBB;
 import com.ldh.ant.iocWirdAnt.Autowird;
-import com.ldh.ant.iocWirdAnt.Resource;
 import com.ldh.ant.antConption.Spring;
-import com.ldh.ioc.IocImpl.IocLIst.ServiceForList;
-import com.ldh.springException.SpringIocExpetion;
 import com.ldh.start.SiStart;
 
 @Spring(name = "Spring")
 public class StartApplication {
     //测试
     @Autowird
-    private static VirtualJdbcFather virtualJdbc;
+    private static BBB virtualJdbc;
 
     @Autowird
     private static String str;
