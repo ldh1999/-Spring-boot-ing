@@ -4,6 +4,6 @@ import com.ldh.start.SiStart;
 
 public class startSpring {
     public static void main(String[] args){
-        SiStart.start("com.cc");
+        SiStart.start("com.cc.java");
     }
 }

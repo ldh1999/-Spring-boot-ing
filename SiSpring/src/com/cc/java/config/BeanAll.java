@@ -1,6 +1,6 @@
-package com.cc.config;
+package com.cc.java.config;
 
-import com.cc.virtualConfigPage.VirtualJdbc;
+import com.cc.java.virtualConfigPage.VirtualJdbc;
 import com.ldh.ant.antConption.Bean;
 import com.ldh.ant.Config;
 

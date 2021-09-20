@@ -119,6 +119,7 @@ public class PackageScannerImpl implements PackageScanner {
         return listClassAll;
     }
 
+
     @Override
     public List<Class> getFullQualifiedClass() throws ClassNotFoundException {
         return docanToClass(basePage);
@@ -128,4 +129,6 @@ public class PackageScannerImpl implements PackageScanner {
     public List<String> getFullyQualifiedClassNameList() throws IOException {
         return doScan(basePage,new ArrayList<>());
     }
+
+
 }

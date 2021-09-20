@@ -1,4 +1,4 @@
-package com.cc.virtualConfigPage;
+package com.cc.java.virtualConfigPage;
 
 public class VirtualJdbc implements BBB{
     private String url;

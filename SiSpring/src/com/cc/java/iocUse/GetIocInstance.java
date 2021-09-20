@@ -1,6 +1,6 @@
-package com.cc.iocUse;
+package com.cc.java.iocUse;
 
-import com.cc.virtualConfigPage.VirtualJdbc;
+import com.cc.java.virtualConfigPage.VirtualJdbc;
 import com.ldh.ant.iocWirdAnt.Resource;
 import com.ldh.ant.antConption.Spring;
 

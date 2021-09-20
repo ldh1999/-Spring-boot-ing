@@ -20,6 +20,8 @@ public class IocInit {
      */
     private List<Class> listClass;
 
+
+
     /**
      * beanList
      */

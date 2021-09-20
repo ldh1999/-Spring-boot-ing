@@ -1,4 +1,4 @@
-package com.cc.virtualConfigPage;
+package com.cc.java.virtualConfigPage;
 
 public interface AAA {
     void start();

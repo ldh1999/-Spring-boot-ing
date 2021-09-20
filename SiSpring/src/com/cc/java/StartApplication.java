@@ -1,6 +1,6 @@
-package com.cc;
+package com.cc.java;
 
-import com.cc.virtualConfigPage.BBB;
+import com.cc.java.virtualConfigPage.BBB;
 import com.ldh.ant.iocWirdAnt.Autowird;
 import com.ldh.ant.antConption.Spring;
 import com.ldh.start.SiStart;
@@ -15,7 +15,7 @@ public class StartApplication {
     private static String str;
 
     public static void main(String[] args){
-        SiStart.start("com.cc");
+        SiStart.start("com.cc.java");
         virtualJdbc.start();
         System.out.println(str);
 

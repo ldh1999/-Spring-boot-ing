@@ -7,4 +7,5 @@ public interface PackageScanner {
     public List<String> getFullyQualifiedClassNameList() throws IOException;
 
     public List<Class> getFullQualifiedClass() throws ClassNotFoundException;
+
 }
